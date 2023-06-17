@@ -1,0 +1,146 @@
+  git commit -m "bal.java file is added" bal.java
+   39  git log
+   40  git log --oneline
+   41  git commit -m "pl.java dao.java are added in this commit"
+   42  git log --oneline
+   43  git status
+   44  git remote add origin https://github.com/onlineTrainingguy/CogProj.git
+   45  git branch
+   46  git branch -M main
+   47  git branch
+   48  git push -u origin main
+   49  ssh-keygen
+   50  cat /root/.ssh/id_rsa.pub
+   51  git remote set-url origin git@github.com:onlineTrainingguy/CogProj.git
+   52  cat .git/config
+   53  touch db.java
+   54  git status
+   55  git add .
+   56  git commit -m "db.java file is added"
+   57  git status
+   58  git push origin main
+   59  cat .git/config
+   60  ls
+   61  git fetch
+   62  ls
+   63  git merge origin/main
+   64  ls
+   65  git log --oneline
+   66  git pull origin main
+   67  ls
+   68  git log --oneline
+   69  echo "this is local newremote.java" > newremote.java
+   70  git push origin main
+   71  git push -f origin main
+   72  git status
+   73  git add .
+   74  git commit -m "new.java file is modified"
+   75  git push -f origin main
+   76  touch tmp.java
+   77  git status
+   78  git add .
+   79  git commit -m "tmp.java file is added"
+   80  git log --oneline
+   81  git reset HEAD~1
+   82  git log --oneline
+   83  git status
+   84  git add .
+   85  git commit -m "tmp.java file is added"
+   86  git log --oneline
+   87  git reset --soft HEAD~1
+   88  git status
+   89  git log --oneline
+   90  git commit -m "tmp.java file is added"
+   91  git log --oneline
+   92  git reset --hard
+   93  git log --oneline
+   94  git reset --hard HEAD~1
+   95  git log --oneline
+   96  ls
+   97  git log --oneline
+   98  touch appsettings.json
+   99  git add .
+  100  git commit -m "appsettings.java file is added"
+  101  echo "{name:devops}" > appsettings.json
+  102  cat appsettings.json
+  103  git status
+  104  git add .
+  105  git commit -m " appsettings.java file is modified"
+  106  git status
+  107  git log --oneline
+  108  git diff 4a67cb0 5f00858
+  109  cat appsettings.json
+  110  git log --oneline
+  111  git revert 4a67cb0
+  112  git log --oneline
+  113  cat appsettings.json p
+  114  cat appsettings.json
+  115  git log --oneline
+  116  git revert b242561
+  117  cat appsettings.json
+  118  git branch
+  119  git branch dev1
+  120  git branch
+  121  git branch -D dev1
+  122  git branch
+  123  git branch dev1
+  124  git branc2
+  125  git branch dev2
+  126  git branch
+  127  git push origin dev1
+  128  git push origin dev2
+  129  git push origin main
+  130  git checkout dev1
+  131  git branch
+  132  git pull origin dev1
+  133  ls
+  134  git checkout dev2
+  135  git pull origin dev2
+  136  ls
+  137  git checkout main
+  138  git branch
+  139  git merge dev1
+  140  ls
+  141  git merge dev2
+  142  ls
+  143  git push origin main
+  144  git checkout dev1
+  145  ls
+  146  git merge main
+  147  ls
+  148  git push origin dev1
+  149  git checkout dev2
+  150  git merge main
+  151  git push origin dev2
+  152  git checkout main
+  153  ls
+  154  git checkout dev1
+  155  cat bal.java
+  156  echo "This change is done by dev1" > bal.java
+  157  cat bal.java
+  158  git add .
+  159  git commit -m "bal.java file is modied by dev1"
+  160  git checkout dev2
+  161  cat bal.java
+  162  echo "This change is done by dev2" > bal.java
+  163  cat bal.java
+  164  git add .
+  165  git commit -m "this file is modified by dev2"
+  166  git checkout main
+  167  git merge dev1
+  168  cat bal.java
+  169  git merge dev2
+  170  git mergetool --tool=vimdiff
+  171  cat bal.java
+  172  ls
+  173  cat bal.java.orig
+  174  rm bal.java.orig
+  175  git status
+  176  git add .
+  177  git commit -m "merge conflict is resolved"
+  178  cat bal.java
+  179  git checkout dev1
+  180  cat bal.java
+  181  git merge main
+  182  cat bal.java
+  183  history

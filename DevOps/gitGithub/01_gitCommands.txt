@@ -1,0 +1,21 @@
+   1  echo gitrepo > /etc/hostname
+    2  git --version
+    3  mkdir CogProj
+    4  cd CogProj/
+    5  git init
+    6  ls -a
+    7  ls .git
+    8  whoami
+    9  ls /root/
+   10  ls -la /root/
+   11  git config --global user.name globaluser
+   12  ls -la /root/
+   13  cat /root/.gitconfig
+   14  git config --global user.email globaluser@gmail.com
+   15  cat /root/.gitconfig
+   16  ls .git/
+   17  cat .git/config
+   18  git config --local user.name localuser
+   19  cat .git/config
+   20  git config --local user.email localuser@gmail.com
+   21  cat .git/config

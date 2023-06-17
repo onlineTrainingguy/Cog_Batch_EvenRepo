@@ -1,0 +1,101 @@
+ 1  mkdir mr
+    2  cd mr
+    3  git init
+    4  touch m1 m2 m3
+    5  git status
+    6  git add .
+    7  git status
+    8  git commit -m "m1" m1
+    9  git commit -m "m2" m2
+   10  git commit -m "m3" m3
+   11  git branch feature
+   12  git branch
+   13  git log --oneline
+   14  git checkout feature
+   15  git branch
+   16  git log --oneline
+   17  touch f1
+   18  git add .
+   19  git commit -m "f1"
+   20  git log --oneline
+   21  git checkout -
+   22  touch m4
+   23  git add .
+   24  git commit -m "m4"
+   25  git checkout -
+   26  git log --oneline
+   27  git merge master
+   28  git log --oneline
+   29  cd ..
+   30  mkdir rm
+   31  cd rm
+   32  touch m1 m2 m3
+   33  git add .
+   34  gitinit
+   35  git init
+   36  git add .
+   37  git commit -m "m1" m1
+   38  git commit -m "m2" m2
+   39  git commit -m "m3" m3
+   40  git branch feature
+   41  git checkout feature
+   42  git branch
+   43  touch f1
+   44  git add .
+   45  git commit -m "f1"
+   46  git log --oneline
+   47  git checkout -
+   48  touch m4
+   49  git add .
+   50  git commt -m "m4"
+   51  git commit -m "m4"
+   52  git checkout -
+   53  git log --oneline
+   54  git rebase master
+   55  git log --oneline
+   56  cd ..
+   57  ls
+   58  cd CogProj/
+   59  git branch
+   60  touch newtest.java
+   61  git add .
+   62  ls
+   63  git checkout main
+   64  ls
+   65  git checkout -
+   66  git status
+   67  git stash save "Yet to review newtest.java"
+   68  git status
+   69  git stash list
+   70  git stash pop
+   71  git status
+   72  git stash save "Yet to review newtest.java"
+   73  git stash list
+   74  git stash drop stash@{0}
+   75  git branch
+   76  git checkout -
+   77  ls
+   78  git tag v1
+   79  touch v2 v2.1
+   80  git add .
+   81  git commit -m "v2"
+   82  git tag v2
+   83  touch v3 v3.1
+   84  git add .
+   85  git commit -m  "v3"
+   86  git tag v3
+   87  git tag
+   88  git checkout v1
+   89  ls
+   90  git checkout v2
+   91  ls
+   92  git checkout v3
+   93  ls
+   94  git branch
+   95  git diff v1 v2
+   96  git checkout main
+   97  git log --oneline
+   98  git diff 2f515ca e920f27
+   99  git push tags --all
+  100  git push --tags
+  101  history
