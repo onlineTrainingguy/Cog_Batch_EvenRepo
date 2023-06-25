@@ -1,0 +1,127 @@
+ 299  docker login
+  300  docker logout
+  301  docker login
+  302  docker images
+  303  docker push webimg
+  304  docker image tag webimg ramansharma95/webimg
+  305  docker images
+  306  docker push ramansharma95/webimg
+  307  docker ps
+  308  docker ps -a
+  309  docker rm -f $(docker ps -a -q)
+  310  docker rmi -f $(docker images -q)
+  311  docker images
+  312  docker container run -it --name local_registry -p 5000:5000 -d registry
+  313  docker images
+  314  docker ps -a
+  315  curl localhost:5000/v2/_catalog
+  316  docker pull ubuntu
+  317  docker image tag ubuntu localhost:5000/myubuntu
+  318  docker images
+  319  docker push localhost:5000/myubuntu
+  320  curl localhost:5000/v2/_catalog
+  321  docker images
+  322  docker rmi localhost:5000/myubuntu
+  323  docker images
+  324  docker pull localhost:5000/myubuntu
+  325  docker images
+  326  docker rmi localhost:5000/myubuntu
+  327  docker rm -f local_registry
+  328  mkdir /certs
+  329  mkdir /etc/docker/certs.d
+  330  mkdir /my_repo
+  331  openssl req -newkey rsa:4096 -nodes -sha256 -keyout /certs/domain.key -addext "subjectAltName = DNS:repo.docker.kmit" -x509 -days 365 -out /certs/domain.crt
+  332  cd /certs/
+  333  ls
+  334  mkdir -p /etc/docker/certs.d/repo.docker.kmit:5000
+  335  docker run -d -p 5000:5000 -v /my_repo:/var/lib/registry -v /certs:/certs -e REGISTRY_HTTP_TLS_CERTIFICATE=/certs/domain.crt -e REGISTRY_HTTP_TLS_KEY=/certs/domain.key --restart on-failure --name myregistry registry
+  336  docker ps -a
+  337  vi /etc/hosts
+  338  docker pull mysql
+  339  docker images
+  340  docker push repo.docker.kmit:5000/mysql
+  341  cat domain.crt
+  342  cd /home/ubuntu/
+  343  vi Dockerfile
+  344  ls
+  345  docker build . -t webimg
+  346  docker images
+  347  docker ps -a
+  348  docker rm -f myregistry
+  349  docker container run -it --name web -p 80:80 -d webimg
+  350  docker ps -a
+  351  docker exec -it web bash
+  352  docker rm -f $(docker ps -a -q)
+  353  docker rmi -f $(docker images -q)
+  354  docker ps
+  355  docker container run -it --name c1 -d cetnos
+  356  docker container run -it --name c1 -d centos
+  357  docker ps -a
+  358  docker exec -it c1 bash
+  359  docker stop c1
+  360  docker ps -a
+  361  docker start c1
+  362  docker exec -it c1 bash
+  363  docker ps -a
+  364  docker rm -f c1
+  365  docker ps -a
+  366  docker container run -it --name c1 --mount type=tmpfs,destination=/demo -d centos
+  367  docker exec -it c1 bash
+  368  docker stop c1
+  369  docker start c1
+  370  docker exec -it c1 bash
+  371  docker rm -f c1
+  372  ls /var/lib/docker/
+  373  ls /var/lib/docker/volumes/
+  374  docker volume ls
+  375  docker volume prune
+  376  docker volume ls
+  377  ls /var/lib/docker/volumes/
+  378  docker volume create demo-vol
+  379  docker volume ls
+  380  ls /var/lib/docker/volumes/
+  381  ls /var/lib/docker/volumes/demo-vol/
+  382  ls /var/lib/docker/volumes/demo-vol/_data/
+  383  docker container run -it --name c1 --mount source=demo-vol,destination=/app -d centos
+  384  docker exec -it c1 bash
+  385  ls /var/lib/docker/volumes/demo-vol/_data/
+  386  docker rm -f c1
+  387  ls /var/lib/docker/volumes/demo-vol/_data/
+  388  docker container run -it --name c2 --mount source=demo-vol,destination=/demo -d ubuntu
+  389  docker exec -it c2 bash
+  390  docker inspect c1
+  391  docker inspect c2
+  392  docker volume ls
+  393  ls /var/lib/docker/volumes/demo-vol/_data/
+  394  docker volume rm demo-vol
+  395  docker container rm -f c2
+  396  docker volume rm demo-vol
+  397  ls /var/lib/docker/volumes/demo-vol/_data/
+  398  mkdir mydir
+  399  cd mydir/
+  400  docker container run -it --name c1 -v /home/ubuntu/mydir:/demo -d centos
+  401  docker exec -it c1 bash
+  402  ls
+  403  docker rm -f c1
+  404  ls
+  405  docker container run -it --name c2 -v /home/ubuntu/mydir:/demo1 -d centos
+  406  docker exec -it c2 bash
+  407  docker rm -f c2
+  408  cd ..
+  409  rm -ifr *
+  410  ls
+  411  ip a
+  412  docker container run -it --name c1 -d centos
+  413  docker inspect c1
+  414  docker network ls
+  415  docker container run -it --name c2 -d centos
+  416  docker inspect c2
+  417  docker exec -it c2 bash
+  418  docker rm -f c1 c2
+  419  docker network create -d bridge webnetwork --subnet 192.168.0.0/16 --gateway 192.168.0.1
+  420  docker network ls
+  421  docker container run -it --name c1 --network webnetwork -d centos
+  422  docker inspect c1
+  423  docker container run -it --name c2 --network webnetwork -d centos
+  424  docker inspect c2
+  425  docker exec -it c2 bash

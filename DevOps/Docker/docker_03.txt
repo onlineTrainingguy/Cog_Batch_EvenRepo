@@ -1,0 +1,136 @@
+ 1  docker rm -f $(docker ps -a -q)
+    2  docker rmi -f $(docker images -q)
+    3  docker network ls
+    4  docker network prune
+    5  docker volume ls
+    6  docker volume prune
+    7  docker volume ls
+    8  docker network ls
+    9  docker container run -it --name h1 --network host -d nginx
+   10  docker rm -f h1
+   11  docker network ls
+   12  docker container run -it --name n1 -d centos
+   13  docker rm -f n1
+   14  docker container run -it --name n1 --network none -d centos
+   15  docker inspect n1
+   16  docker exec -it n1 bash
+   17  docker network disconnect none n1
+   18  docker network connect bridge n1
+   19  docker inspect n1
+   20  DOCKER_CONFIG=${DOCKER_CONFIG:-$HOME/.docker}
+   21  mkdir -p $DOCKER_CONFIG/cli-plugins
+   22  curl -SL https://github.com/docker/compose/releases/download/v2.19.0/docker-compose-linux-x86_64 -o $DOCKER_CONFIG/cli-plugins/docker-compose
+   23  chmod +x $DOCKER_CONFIG/cli-plugins/docker-compose
+   24  docker compose version
+   25  rm *
+   26  ls
+   27  vi docker-compose.yaml
+   28  docker-compose up -d
+   29  docker-compose up
+   30  docker compose version
+   31  docker compose up -d
+   32  docker ps -a
+   33  docker rm -f n1
+   34  docker ps -a
+   35  docker compose --help
+   36  docker images
+   37  docker network ls
+   38  docker volume ls
+   39  docker compose stop db
+   40  docker ps
+   41  docker ps -a
+   42  docker compose start db
+   43  docker ps -a
+   44  docker compose top db
+   45  docker compose top wordpress
+   46  docker compose down
+   47  docker compose down volumes
+   48  docker compose --help
+   49  docker compose down --help
+   50  docker compose down -v
+   51  docker images
+   52  docker rmi wordpress mysql:5.7
+   53  docker volume ls
+   54  docker volume prune
+   55  docker swarm init
+   56  docker node ls
+   57  docker node rm docker03
+   58  docker node ls
+   59  docker swarm join-token worker
+   60  docker node ls
+   61  docker network ls
+   62  docker info
+   63  docker network ls
+   64  docker network inspect docker_gwbridge
+   65  docker service create  --name=viz --publish=8080:8080/tcp  --constraint=node.role==manager --mount=type=bind,src=/var/run/docker.sock,dst=/var/run/docker.sock dockersamples/visualizer
+   66  docker service --help
+   67  docker service create --name webservice --replicas 3 -d nginx
+   68  docker service ls
+   69  docker service ps webservice
+   70  docker service scale webservice=5
+   71  docker service scale webservice=3
+   72  docker service rm webservice
+   73  docker service create --name webservice --publish 80:80 --replicas 3 -d nginx
+   74  docker service rm webservice
+   75  docker service create --name webservice --mode=global -d nginx
+   76  docker service scale webservice=5
+   77  docker service rm webservice
+   78  docker service create --name webservice --constraint="node.role==manager" -d nginx
+   79  docker service scale webservice=3
+   80  docker service rm webservice
+   81  docker service create --name webservice --constraint="node.role==worker" -d nginx
+   82  docker service scale webservice=3
+   83  docker service rm webservice
+   84  docker node update --label-add="env=prod" docker02
+   85  docker service create --name webservice -d --constraint="node.labels.env==prod" --publish 80:80 nginx
+   86  docker service scale webservice=3
+   87  docker service rm webservice
+   88  docker service create --name redis --replicas 5 --update-delay 10s redis:3.0.6
+   89  docker service update redis --image redis:3.0.7
+   90  docker service update redis --image redis:3.0.21
+   91  docker service rollback redis
+   92  docker service rm redis
+   93  ls
+   94  cp docker-compose.yaml stack.yaml
+   95  ls
+   96  docker stack --help
+   97  docker stack deploy -c stack.yaml mystack
+   98  docker stack ls
+   99  docker stack services ls
+  100  docker stack services
+  101  docker stack services --help
+  102  docker stack --help
+  103  docker stack services
+  104  docker stack services --help
+  105  docker stack services db
+  106  docker stack ps
+  107  vi stack.yaml
+  108  docker srevices
+  109  docker srevice ls
+  110  docker service ls
+  111  docker stack services mystack_db
+  112  docker stack services mystack_db ls
+  113  docker stack services mystack
+  114  docker network ls
+  115  docker stack --help
+  116  docker stack rm mystack
+  117  docker stack ls
+  118  ls /var/lib/docker
+  119  cd /var/lib/docker/
+  120  tar -zcvf swarm.tar.gz swarm/
+  121  ls
+  122  rm -ifr swarm
+  123  ls
+  124  systemctl stop docker
+  125  sytstemctl start docker
+  126  systemctl start docker
+  127  ls
+  128  docker node ls
+  129  systemctl stop docker
+  130  rm -ifr swarm
+  131  ls
+  132  tar -xvzf swarm.tar.gz
+  133  ls
+  134  systemctl start docker
+  135  docker node ls
+  136  history
