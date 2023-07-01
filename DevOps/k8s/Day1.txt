@@ -1,0 +1,122 @@
+ 1  apt update && apt install docker.io -y
+    2  docker --version
+    3  sudo apt-get update && sudo apt-get install -y apt-transport-https curl
+    4  curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+    5  cat <<EOF | sudo tee /etc/apt/sources.list.d/kubernetes.list
+
+deb https://apt.kubernetes.io/ kubernetes-xenial main
+
+EOF
+
+    6  sudo apt-get update
+    7  apt install -qq -y kubeadm=1.27.2-00 kubelet=1.27.2-00 kubectl=1.27.2-00
+    8  sudo apt-mark hold kubelet kubeadm kubectl
+    9  kubeadm init --apiserver-advertise-address=172.31.61.15 --pod-network-cidr=192.168.0.0/16
+   10  kubectl get nodes
+   11  kubectl create -f https://docs.projectcalico.org/v3.18/manifests/calico.yaml
+   12  kubectl get nodes
+   13  kubectl get pods
+   14  kubectl run pod1 --image nginx
+   15  kubectl get pods
+   16  kubectl get pods -o wide
+   17  curl 192.168.130.1
+   18  kubectl get pods pod1 -o yaml
+   19  kubectl get pods pod1 -o json
+   20  kubectl edit pod pod1
+   21  kubectl get pods pod1 -o yaml
+   22  kubectl exec -it pod1 -- bash
+   23  kubectl delete pod pod1
+   24  vi pod.yaml
+   25  kubectl create -f pod.yaml
+   26  kubectl get pods
+   27  kubectl get pods -o wide
+   28  kubectl describe pod pod1
+   29  vi pod.yaml
+   30  kubectl apply -f pod.yaml
+   31  kubectl describe pod pod1
+   32  kubectl delete -f pod.yaml
+   33  kubectl get pods
+   34  vi pod.yaml
+   35  kubectl apply -f pod.yaml
+   36  kubectl get pods -o wide
+   37  curl 192.168.130.3
+   38  curl 192.168.130.3:8080
+   39  kuebctl exec -it -c c1 -- bash
+   40  kubectl exec -it -c c1 -- bash
+   41  kubectl exec -it pod1 -c c1 -- bash
+   42  kubectl exec -it pod1 -c c2 -- bash
+   43  kubectl run pod2 --image nginx --dry-run=client -o yaml
+   44  kubectl get pods
+   45  kubectl get pods -o wide
+   46  kubectl delete pods --all
+   47  vi pod.yaml
+   48  kubectl create -f pod.yaml
+   49  kubectl get pods -o wide
+   50  kubectl delete pod --all
+   51  kubectl describe node kwn1
+   52  kubectl label nodes kwn1 env=prod
+   53  kubectl get pods --show-labels
+   54  kubectl get nodes --show-labels
+   55  kubectl label nodes kwn2 env=stag
+   56  kubectl get nodes --show-labels kwn2
+   57  vi pod.yaml
+   58  kubectl create -f pod.yaml
+   59  kubectl get pods -o wide
+   60  kubectl delete pod --all
+   61  vi pod.yaml
+   62  kubectl create -f pod.yaml
+   63  kubectl get pod -o wide
+   64  kubectl delete pod --all
+   65  kubectl describe node kwn1
+   66  kubectl describe node kwn1 | grep Taints
+   67  kubectl describe node kwn2 | grep Taints
+   68  kubectl describe node kmaster | grep Taints
+   69  kubectl taint nodes kwn1 app=web:NoSchedule
+   70  kubectl describe node kwn1 | grep Taints
+   71  vi pod.yaml
+   72  kubectl create -f pod.yaml
+   73  kubectl get pods -o wide
+   74  kubectl run pod1 --image nginx
+   75  kubectl get pods -o wide
+   76  kubectl run pod2 --image nginx
+   77  kubectl get pods -o wide
+   78  kubectl run pod3 --image nginx
+   79  kubectl get pods -o wide
+   80  kubectl taint nodes kwn1 app-
+   81  kubectl describe node kwn1 | grep Taints
+   82  kubectl run pod4 --image nginx
+   83  kubectl get pods -o wide
+   84  kubectl delete pods --all
+   85  rm pod.yaml
+   86  vi rc.yaml
+   87  kubectl get pods
+   88  kubectl create -f rc.yaml
+   89  kubectl get rc
+   90  kubectl get pods -o wide
+   91  kubectl delete pod nginx-rc-lrf96
+   92  kubectl get pods -o wide
+   93  kubectl run pod1 --image nginx
+   94  kubectl ge tpods
+   95  kubectl get tpods
+   96  kubectl get pods
+   97  kubectl get pods -l app=nginx-app
+   98  kubectl describe rc nginx-rc
+   99  kubectl scale rc nginx-rc --replicas 5
+  100  kubectl get pods
+  101  kubectl scale rc nginx-rc --replicas 3
+  102  kubectl get pods
+  103  kubectl delete -f rc.yaml
+  104  kubectl get rc
+  105  kubectl get pods
+  106  kubectl delete pod pod1
+  107  cat rc.yaml
+  108  rm rc.yaml
+  109  vi rs.yaml
+  110  kubectl create -f rs.yaml
+  111  kubectl get rs
+  112  kubectl get pods -o wide
+  113  kubectl describe rs nginx-rs
+  114  kubectl get pods -l app=nginx-app
+  115  kubectl get pods -l 'tier in (frontend)'
+  116  kubectl delete rs nginx-rs
+  117  kubectl get pods
